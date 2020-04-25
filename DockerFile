@@ -1,0 +1,17 @@
+FROM node:12.16.2-alpine3.9
+
+ENV WDIR /process
+
+RUN mkdir -p ${WDIR}
+
+WORKDIR ${WDIR}
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY . .
+
+EXPOSE $PORT
+
+CMD [ "npm", "start" ]
